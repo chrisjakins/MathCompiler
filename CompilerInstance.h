@@ -2,13 +2,17 @@
 
 #include <string>
 
+namespace MC {
+
 class CompilerInstance {
 public:
-    CompilerInstance(const char *infile, const char *outfile);
+    CompilerInstance(const char *infilename, const char *outfilename);
 
     void compile();
 
 private:
     std::string infile_;
-    std::string outfile_;
+    std::string outfilename_;
 };
+
+} // ns MC

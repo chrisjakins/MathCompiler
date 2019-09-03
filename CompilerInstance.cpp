@@ -1,10 +1,18 @@
 #include "CompilerInstance.h"
 #include <iostream>
+#include <fstream>
 
-CompilerInstance::CompilerInstance(const char *infile, const char *outfile)
-    : infile_(infile), outfile_(outfile)
-{}
+namespace MC {
+
+CompilerInstance::CompilerInstance(const char *infilename, const char *outfilename)
+    : outfilename_(outfilename)
+{
+    std::ifstream infile(infilename);
+    infile >> infile_;
+}
 
 void CompilerInstance::compile() {
-    std::cout << "Compiling" << std::endl;
+    std::cout << infile_ << std::endl;
 }
+
+} // ns MC
