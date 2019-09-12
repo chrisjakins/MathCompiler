@@ -1,4 +1,5 @@
 #include "CompilerInstance.h"
+#include "Lexer.h"
 #include <iostream>
 #include <fstream>
 
@@ -12,7 +13,13 @@ CompilerInstance::CompilerInstance(const char *infilename, const char *outfilena
 }
 
 void CompilerInstance::compile() {
-    std::cout << infile_ << std::endl;
+    Lexer lexer(infile_);
+
+    Token currToken = lexer.getNextToken();
+    while (currToken.tokenClass != EoF) {
+        std::cout << currToken.repr << std::endl;
+        currToken = lexer.getNextToken();
+    }
 }
 
 } // ns MC
