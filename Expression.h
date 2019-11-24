@@ -3,6 +3,9 @@
 namespace MC {
 
 struct Expression {
+private:
+    using Operator = int;
+
 public:
     Expression *left_, *right_;
     char type_;
