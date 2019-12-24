@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Expression.h"
+#include "Lexer.h"
+#include "Token.h"
+
+#include <memory>
 
 namespace MC {
 
@@ -9,17 +13,17 @@ private:
     using ASTNode = Expression;
 
 public:
-    Parser();
+    Parser(Lexer &lexer);
 
-    int parse(ASTNode **head);
+    int parseProgram(std::shared_ptr<Expression> expr);
 
 private:
     using Operator = int;
 
-    ASTNode *head;
+    Lexer lexer_;
 
-    int parseOperator(Operator *oper);
-    int parseExpression(Expression **expr);
+    int parseOperator(Operator &oper);
+    int parseExpression(std::shared_ptr<Expression> expr);
 };
 
 } // ns MC

@@ -9,7 +9,8 @@ class Lexer {
 public:
     Lexer(std::string sourceCode);
 
-    Token getNextToken();
+    void getNextToken();
+    Token &currToken();
 
 private:
     bool isLayoutChar(int ch);
@@ -17,6 +18,7 @@ private:
 
     int index;
     std::string sourceCode_;
+    Token currToken_;
 };
 
 } // ns MC

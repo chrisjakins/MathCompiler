@@ -8,10 +8,7 @@ class CodeGen {
 public:
     CodeGen();
 
-    void generate(Expression *expr);
-
-private:
-
+    static void generate(std::shared_ptr<Expression> expr);
 };
 
 } // ns MC

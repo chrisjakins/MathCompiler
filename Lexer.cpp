@@ -4,31 +4,35 @@
 
 namespace MC {
 
+// TODO: sourceCode reference?
 Lexer::Lexer(std::string sourceCode)
     : sourceCode_(sourceCode), index(0)
 {}
 
-Token Lexer::getNextToken() {
-    Token currToken;
+//TODO change to stringstream
+void Lexer::getNextToken() {
     int ch;
 
     do {
         ch = getchar();
         if (ch < 0) {
-            currToken.tokenClass = EoF;
-            currToken.repr = '#';
-            return currToken;
+            currToken_.tokenClass_ = EoF;
+            currToken_.repr_ = '#';
+            return;
         }
     } while (isLayoutChar(ch));
 
     if ('0' <= ch && ch <= '9') {
-        currToken.tokenClass = DIGIT;
+        currToken_.tokenClass_ = DIGIT;
     }
     else {
-        currToken.tokenClass = ch; 
+        currToken_.tokenClass_ = ch; 
     }
-    currToken.repr = ch;
-    return currToken;
+    currToken_.repr_ = ch;
+}
+
+Token &Lexer::currToken() {
+    return currToken_;
 }
 
 bool Lexer::isLayoutChar(int ch) {

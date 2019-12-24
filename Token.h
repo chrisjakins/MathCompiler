@@ -6,8 +6,8 @@
 namespace MC {
 
 struct Token {
-    int tokenClass;
-    char repr;
+    int tokenClass_;
+    char repr_;
 };
 
 } // ns MC

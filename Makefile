@@ -1,12 +1,12 @@
-CC=clang++
-CFLAGS = -std=c++17
-DEPS = CompilerInstance.h Lexer.h Token.h Parser.h
+CXX := clang++
+CXXFLAGS := -std=c++17
+DEPS := CompilerInstance.h CodeGen.h Lexer.h Token.h Parser.h Expression.h
 
 %.o: %.cpp $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
-compiler: main.o CompilerInstance.o Lexer.o Parser.o
-	$(CC) -o compiler main.o CompilerInstance.o Lexer.o Parser.o
+compiler: main.o CompilerInstance.o CodeGen.o Lexer.o Parser.o
+	$(CXX) $(CXXFLAGS) -o compiler main.o CompilerInstance.o CodeGen.o Lexer.o Parser.o
 
 clean:
 	rm compiler *.o

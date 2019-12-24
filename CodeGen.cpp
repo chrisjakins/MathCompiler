@@ -1,8 +1,10 @@
-#include "CodeGen.h";
+#include "CodeGen.h"
+
+#include <iostream>
 
 namespace MC {
 
-void CodeGen::generate(Expression *expr) {
+void CodeGen::generate(std::shared_ptr<Expression> expr) {
     switch (expr->type_) {
         case 'D':
             std::cout << "PUSH " << expr->value_ << std::endl;
