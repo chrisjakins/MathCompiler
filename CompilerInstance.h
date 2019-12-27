@@ -19,6 +19,8 @@ private:
 
     std::shared_ptr<Expression> parseProgram();
     void generateCode(std::shared_ptr<Expression> expr);
+    void constantFolding(std::shared_ptr<Expression> expr);
+    int calc(int left, int oper, int right);
 };
 
 } // ns MC
