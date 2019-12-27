@@ -18,6 +18,7 @@ void Lexer::getNextToken() {
         if (ch < 0) {
             currToken_.tokenClass_ = EoF;
             currToken_.repr_ = '#';
+            currToken_.pos_ = sourceCode_.size();
             return;
         }
     } while (isLayoutChar(ch));
@@ -29,6 +30,7 @@ void Lexer::getNextToken() {
         currToken_.tokenClass_ = ch; 
     }
     currToken_.repr_ = ch;
+    currToken_.pos_ = index - 1;
 }
 
 Token &Lexer::currToken() {

@@ -50,16 +50,16 @@ int Parser::parseExpression(std::shared_ptr<Expression> expr) {
         expr->left_ = std::make_shared<Expression>();
         expr->right_ = std::make_shared<Expression>();
         if (!parseExpression(expr->left_)) {
-            std::cout << "Error: missing expression" << std::endl;
+            std::cout << "Error: missing expression at position " << currToken.pos_ << std::endl;
         }
         if (!parseOperator(expr->oper_)) {
-            std::cout << "Error: missing operator" << std::endl;
+            std::cout << "Error: missing operator at position " << currToken.pos_ << std::endl;
         }
         if (!parseExpression(expr->right_)) {
-            std::cout << "Error: missing expression" << std::endl;
+            std::cout << "Error: missing expression at position " << currToken.pos_ << std::endl;
         }
         if (currToken.tokenClass_ != ')') {
-            std::cout << "Error: missing )" << std::endl;
+            std::cout << "Error: missing ) at position " << currToken.pos_ << std::endl;
         }
         lexer_.getNextToken();
         return 1;

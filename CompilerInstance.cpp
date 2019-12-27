@@ -18,14 +18,18 @@ CompilerInstance::CompilerInstance(const char *infilename, const char *outfilena
 
 void CompilerInstance::compile() {
     auto expr = parseProgram();
-    generateCode(expr);
+    if (expr) {
+        generateCode(expr);
+    }
 }
 
 std::shared_ptr<Expression> CompilerInstance::parseProgram() {
     std::shared_ptr<Expression> expr = std::make_shared<Expression>();
     Lexer lexer(infile_);
     Parser parser(lexer);
-    parser.parseProgram(expr);
+    if (parser.parseProgram(expr) > 0) {
+        return nullptr;
+    }
     return expr;
 }
 
